@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const auth = require('../middleware/auth');
+const auth = require('./middleware/auth');
 
-const Image = require('../models/Image');
+const Image = require('./models/Image');
 
 router.post(
     '/',
@@ -32,6 +32,8 @@ router.post(
     
             res.json({ fileName: file.name, filePath: `/uploads/${file.name}`})
         });
+
+        console.log('First Part Done!');
 
         const errors = validationResult(req);
         if(!errors.isEmpty()) {

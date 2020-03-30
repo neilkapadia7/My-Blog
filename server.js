@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', require('./routes/users'));
 app.use('/api/blogs', require('./routes/blog'));
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/upload', require('./routes/image'));
+app.use('/api/upload', require('./image'));
 
 // app.post('/api/upload', (req, res) => {
 //     console.log('It is happening Again');

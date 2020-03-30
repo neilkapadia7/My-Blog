@@ -67,7 +67,7 @@ router.post(
 // @route   PUT    api/blogs/:id
 // @desc    Update Blogs
 // @access  Private
-router.put('/:id', auth, async (res, res) => {
+router.put('/:id', auth, async (req, res) => {
     const {title, body, image} = req.body;
 
     const blogFields = {};
