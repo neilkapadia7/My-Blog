@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import { getUser } from '../../Actions/authAction';
 
-const Login = () => {
+const Login = ({getUser}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault();
         
         console.log({
@@ -22,11 +24,15 @@ const Login = () => {
             <h1>Login</h1>
             <form onSubmit={onSubmit}>
                 <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required/>
-                <input type='text' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
+                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
                 <input type='submit' value='Login' />
             </form>
         </div>
     )
 }
 
-export default Login;
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps, {getUser})(Login);

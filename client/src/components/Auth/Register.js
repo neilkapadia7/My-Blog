@@ -7,7 +7,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault();
 
         console.log({
@@ -30,7 +30,7 @@ const Register = () => {
                 <input type='text' value={firstName} placeholder='Enter First Name' onChange={(e) => setFirstName(e.target.value)} required />
                 <input type='text' value={lastName} placeholder='Enter Last Name' onChange={(e) => setLastName(e.target.value)} required />
                 <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required/>
-                <input type='text' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
+                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
                 <input type='submit' value='Register' />
             </form>
         </div>
