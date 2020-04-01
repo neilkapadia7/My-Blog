@@ -1,8 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../../Actions/authAction';
+import { login, clearErrors } from '../../Actions/authAction';
 
-const Login = ({getUser}) => {
+const Login = props => {
+    const { auth: {isAuthenticated, error}, login, clearErrors } = props;
+
+    useEffect(() => {
+        if(isAuthenticated) {
+            props.history.push('/');
+        }
+
+    }, [isAuthenticated, props.history]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -10,7 +18,7 @@ const Login = ({getUser}) => {
     const onSubmit = e => {
         e.preventDefault();
         
-        console.log({
+        login({
             email,
             password
         });
@@ -32,7 +40,7 @@ const Login = ({getUser}) => {
 }
 
 const mapStateToProps = state => ({
-
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, {getUser})(Login);
+export default connect(mapStateToProps, {login, clearErrors})(Login);

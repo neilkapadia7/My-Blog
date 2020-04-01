@@ -1,6 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux';
+import { register, clearErrors } from '../../Actions/authAction';
 
-const Register = () => {
+const Register = props => {
+
+    const { auth: {isAuthenticated, error}, register, clearErrors} = props;
+
+    useEffect(() => {
+        if(isAuthenticated) {
+            props.history.push('/');
+        }
+
+    }, [isAuthenticated]);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -10,7 +21,7 @@ const Register = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-        console.log({
+        register({
             firstName,
             lastName,
             email,
@@ -37,4 +48,8 @@ const Register = () => {
     )
 }
 
-export default Register;
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, {register, clearErrors})(Register);

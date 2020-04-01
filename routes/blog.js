@@ -113,7 +113,7 @@ router.delete('/:id', auth, async (req, res) => {
 
         await Blog.findByIdAndRemove(req.params.id);
 
-        res.json({ msg: 'Contact Removed'});
+        res.json({ msg: 'Blog Deleted'});
     } 
     catch (err) {
         
