@@ -16,6 +16,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import {Provider} from 'react-redux';
 import store from './store';
 import NotFound from './components/Layout/NotFound';
+import UpdateBlog from './components/Blog/UpdateBlog';
 
 if(localStorage.token) {
   setAuthToken(localStorage.token);
@@ -34,6 +35,7 @@ const App = () => {
           <PrivateRoute exact path='/blog/:id' component={Blog} />
           <PrivateRoute exact path='/newBlog' component={AddBlog} />
           <PrivateRoute exact path='/about' component={About} />
+          <PrivateRoute exact path='/update/:id' component={UpdateBlog} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='*' component={NotFound} />

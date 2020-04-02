@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG } from './types';
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG } from './types';
 
 export const getBlogs = () => async dispatch => {
    
@@ -15,7 +15,7 @@ export const getBlogs = () => async dispatch => {
 
 export const addBlog = formData => async dispatch => {
     const config = {
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     }
@@ -29,3 +29,40 @@ export const addBlog = formData => async dispatch => {
     }
 }
 
+export const setCurrent = blog => dispatch => {
+    dispatch({ type: SET_CURRENT, payload: blog });
+}
+
+export const updateBlog = formData => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+        const res = await axios.put(`/api/blogs/${formData._id}`, formData, config);
+        
+        dispatch({ type: UPDATE_BLOG, payload: res.data });
+    } 
+    catch (err) {
+        dispatch({ type: BLOG_ERROR, payload: err });
+    }
+}
+
+export const deleteBlog = id => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+        const res = await axios.delete(`/api/blogs/${id}`, config);
+
+        dispatch({ type: DELETE_BLOG, payload: id });
+    } 
+    catch (err) {
+        dispatch({ type: BLOG_ERROR, payload: err });   
+    }
+}

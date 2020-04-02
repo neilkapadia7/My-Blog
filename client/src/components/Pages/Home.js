@@ -26,7 +26,6 @@ const Home = ({loadUser, getBlogs, blog: {blogs}}) => {
 }
 
 Home.propTypes = {
-    blog: PropTypes.object.isRequired,
     loadUser: PropTypes.func.isRequired,
     getBlogs: PropTypes.func.isRequired
 }
