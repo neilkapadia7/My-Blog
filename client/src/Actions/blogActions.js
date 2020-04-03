@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT } from './types';
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG } from './types';
 
 export const getBlogs = () => async dispatch => {
    
@@ -69,4 +69,36 @@ export const deleteBlog = id => async dispatch => {
     catch (err) {
         dispatch({ type: BLOG_ERROR, payload: err });   
     }
+}
+
+export const getAllBlogs = () => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+        const res = await axios.get('/api/blogs/all', config);
+
+        dispatch({ type: GET_ALL_BLOGS, payload: res.data});    
+    } 
+    catch (err) {
+        dispatch({ type: BLOG_ERROR, payload: err });   
+    }
+}
+
+export const getUserBlogs = id => async dispatch => {
+    try {
+        const res = await axios.get(`/api/blogs/user/${id}`);
+        
+        dispatch({type: GET_USER_BLOGS, payload: res.data});
+    } 
+    catch (err) {
+        dispatch({ type: BLOG_ERROR, payload: err });   
+    }
+}
+
+export const removeUserBlog = () => dispatch => {
+    dispatch({ type: REMOVE_USER_BLOG })
 }

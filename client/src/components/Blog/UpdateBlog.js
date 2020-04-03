@@ -5,15 +5,13 @@ import {updateBlog, removeCurrent} from '../../Actions/blogActions';
 
 const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => {
     
-    const {_id, title, body, image, author} = current;
-
     const [title2, setTitle] = useState('');
     const [body2, setBody] = useState('');
 
     useEffect(() => {   
         if(current !== null) {
-            setTitle(title);
-            setBody(body)
+            setTitle(current.title);
+            setBody(current.body)
         }
 
         return() => {
@@ -35,11 +33,11 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => 
         }
         else{
             updateBlog({
-                _id, 
+                _id: current._id, 
                 title: title2, 
                 body: body2, 
-                image, 
-                author
+                image: current.image, 
+                author: current.author
             });
         }
         

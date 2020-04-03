@@ -9,6 +9,8 @@ import About from './components/Pages/About';
 import Navbar from './components/Layout/Navbar';
 import AddBlog from './components/Blog/AddBlog';
 import Blog from './components/Blog/Blog';
+import AllBlogs from './components/Blog/AllBlogs/AllBlogs'; 
+import UserBlogs from './components/Blog/AllBlogs/UserBlogs';
 
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -37,6 +39,8 @@ const App = () => {
           <PrivateRoute exact path='/newBlog' component={AddBlog} />
           <PrivateRoute exact path='/about' component={About} />
           <PrivateRoute exact path='/update' component={UpdateBlog} />
+          <PrivateRoute exact path='/allblogs' component={AllBlogs} />
+          <PrivateRoute exact path='/user/blogs/:id' component={UserBlogs} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/home' component={GuestHome} />

@@ -15,6 +15,7 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/newBlog'>Add Blog</Link></li>
             <li><Link to='/about'>About</Link></li>
+            <li><Link to='/allblogs'>All Blogs</Link></li>
             <li onClick={Logout}>Logout</li>
         </Fragment>
     );

@@ -22,5 +22,9 @@ export const SET_CURRENT = 'SET_CURRENT';
 export const REMOVE_CURRENT = 'REMOVE_CURRENT';
 export const BLOG_ERROR = 'BLOG_ERROR';
 
+export const GET_ALL_BLOGS = 'GET_ALL_BLOGS';
+export const GET_USER_BLOGS = 'GET_USER_BLOGS';
+export const REMOVE_USER_BLOG = 'REMOVE_USER_BLOG';
+
 // Guest Types
 export const GET_GUEST_BLOGS = 'GET_GUEST_BLOGS';

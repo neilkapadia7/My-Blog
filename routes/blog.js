@@ -137,5 +137,19 @@ router.get('/all', async (req, res) => {
 })
 
 
+// @route   GET    api/blogs/user/:id
+// @desc    Get user's all Blogs
+// @access  Public
+router.get('/user/:id', auth ,async (req, res) => {
+    try {
+        const blogs = await Blog.find({ user: req.params.id }).sort({ date: -1 });
+        
+        res.json(blogs);
+    } 
+    catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 module.exports = router;

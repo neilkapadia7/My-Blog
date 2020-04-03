@@ -1,8 +1,10 @@
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT } from "../Actions/types";
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG } from "../Actions/types";
 
 const initialState = {
     blog: null,
     blogs: null,
+    allblogs: null,
+    userblogs: null,
     error: null,
     loading: false,
     current: null
@@ -42,6 +44,24 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 blogs: state.blogs.filter(blog => blog._id !== action.payload )
+            }
+        case GET_ALL_BLOGS:
+            return {
+                ...state,
+                allblogs: action.payload,
+                loading: false
+            }
+        case GET_USER_BLOGS:
+            return {
+                ...state,
+                userblogs: action.payload,
+                loading: false
+            }
+        case REMOVE_USER_BLOG:
+            return {
+                ...state,
+                userblogs: null,
+                loading: false
             }
         case BLOG_ERROR:
             console.log(action.payload);
