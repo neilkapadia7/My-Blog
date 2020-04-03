@@ -3,7 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {addBlog} from '../../Actions/blogActions';
 
-const AddBlog = ({ blog :{loading} ,addBlog }) => {
+const AddBlog = ({ blog :{loading}, auth: {user} ,addBlog }) => {
     const [file, setFile] = useState('');
     const [uploadedFile, setUploadedFile] = useState(null);
     const [title, setTitle] = useState('');
@@ -21,7 +21,7 @@ const AddBlog = ({ blog :{loading} ,addBlog }) => {
                 title,
                 body,
                 image: uploadedFile.filePath,
-                author: 'Neil Kapadia'
+                author: user && `${user.firstName} ${user.lastName}`
             })
     
             setUploadedFile('');
@@ -76,7 +76,6 @@ const AddBlog = ({ blog :{loading} ,addBlog }) => {
             <form onSubmit={formSubmit}>
                 <input type='text' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} required/>
                 <input type='text' placeholder='Body' value={body} onChange={(e) => setBody(e.target.value)} required/>
-                <input type='text' placeholder='Author' value='Neil Kapadia' readOnly required/>
                 <input type='submit' value='Publish Blog' />
             </form>
             <input type='file' onChange={onChange} />
@@ -89,7 +88,8 @@ const AddBlog = ({ blog :{loading} ,addBlog }) => {
 }
 
 const mapStateToProps = state => ({
-    blog: state.blog
+    blog: state.blog,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, {addBlog})(AddBlog);

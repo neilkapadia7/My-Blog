@@ -1,14 +1,25 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {updateBlog} from '../../Actions/blogActions';
+import {updateBlog, removeCurrent} from '../../Actions/blogActions';
 
-const UpdateBlog = ({ blog: {current, loading}, updateBlog }) => {
+const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => {
     
     const {_id, title, body, image, author} = current;
 
-    const [title2, setTitle] = useState(title);
-    const [body2, setBody] = useState(body);
+    const [title2, setTitle] = useState('');
+    const [body2, setBody] = useState('');
+
+    useEffect(() => {   
+        if(current !== null) {
+            setTitle(title);
+            setBody(body)
+        }
+
+        return() => {
+            removeCurrent();
+        }
+    }, [current]);
 
     if(current === null && loading === true) {
         return <h4>Loading....</h4>
@@ -43,7 +54,7 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog }) => {
                 <input type='text' value={body2} onChange={(e) => setBody(e.target.value)}/>
                 <input type='submit' value='Update Blog' />
             </form>
-            : ''
+            : <h3>No Blog Selected For Update</h3>
         }
         </Fragment>
     )
@@ -51,11 +62,12 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog }) => {
 
 UpdateBlog.propTypes = {
     blog: PropTypes.object.isRequired,
-    updateBlog: PropTypes.func.isRequired
+    updateBlog: PropTypes.func.isRequired,
+    removeCurrent: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     blog: state.blog
 })
 
-export default connect(mapStateToProps, {updateBlog})(UpdateBlog);
+export default connect(mapStateToProps, {updateBlog, removeCurrent})(UpdateBlog);

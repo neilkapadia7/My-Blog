@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG } from './types';
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT } from './types';
 
 export const getBlogs = () => async dispatch => {
    
@@ -31,6 +31,10 @@ export const addBlog = formData => async dispatch => {
 
 export const setCurrent = blog => dispatch => {
     dispatch({ type: SET_CURRENT, payload: blog });
+}
+
+export const removeCurrent = () => dispatch => {
+    dispatch({ type: REMOVE_CURRENT });
 }
 
 export const updateBlog = formData => async dispatch => {

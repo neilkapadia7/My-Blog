@@ -116,9 +116,25 @@ router.delete('/:id', auth, async (req, res) => {
         res.json({ msg: 'Blog Deleted'});
     } 
     catch (err) {
-        
+        console.error(err.message);
+        res.status(500).send('Server Error');
     }
 });
+
+// @route   GET    api/blogs/all
+// @desc    Get all Blogs
+// @access  Public
+router.get('/all', async (req, res) => {
+    try {
+        const blogs = await Blog.find().sort({ date: -1});
+        
+        res.json(blogs);
+    } 
+    catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+})
 
 
 

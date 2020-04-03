@@ -23,7 +23,7 @@ const BlogPost = ({blog, setCurrent, deleteBlog}) => {
             <p>{body}</p>
             <img src={image} height='auto' width='70%' style={{margin: 'auto'}}/>
             <p>{author}</p>
-            <p><Link to={`/update/${_id}`} onClick={Click}>Update</Link></p>
+            <p><Link to={`/update`} onClick={Click}>Update</Link></p>
             <p onClick={Delete}>Delete</p>
         </div>
     )

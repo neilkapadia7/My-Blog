@@ -1,4 +1,4 @@
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG } from "../Actions/types";
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT } from "../Actions/types";
 
 const initialState = {
     blog: null,
@@ -32,6 +32,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 current: action.payload
+            }
+        case REMOVE_CURRENT:
+            return {
+                ...state,
+                current: null
             }
         case DELETE_BLOG:
             return {
