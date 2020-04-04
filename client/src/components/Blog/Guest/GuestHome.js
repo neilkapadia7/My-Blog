@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {getBlogs, clearError} from '../../../Actions/guestActions';
 import {setAlert} from '../../../Actions/alertAction';
 
+import Moment from 'react-moment';
+
 const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAlert}) => {
 
     useEffect(() => {
@@ -25,13 +27,14 @@ const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAle
     return (
         <div>
             {blogs && blogs.map(blog => 
-                <Fragment key={blog._id}>
+                <div key={blog._id}>
                     <img src={blog.image} height='auto' width='80%' style={{margin: 'auto'}} />
                     <h2>{blog.title}</h2>    
                     <h5>{blog.body}</h5>
                     <p>{blog.author}</p>
-                    <p>{blog.date}</p>
-                </Fragment>
+                    <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
+                    <br />
+                </div>
             )
             }
         </div>

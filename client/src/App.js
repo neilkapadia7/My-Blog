@@ -40,10 +40,10 @@ const App = () => {
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/blog/:id' component={Blog} />
           <PrivateRoute exact path='/newBlog' component={AddBlog} />
-          <PrivateRoute exact path='/about' component={About} />
           <PrivateRoute exact path='/update' component={UpdateBlog} />
           <PrivateRoute exact path='/allblogs' component={AllBlogs} />
           <PrivateRoute exact path='/user/blogs/:id' component={UserBlogs} />
+          <Route exact path='/about' component={About} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/home' component={GuestHome} />

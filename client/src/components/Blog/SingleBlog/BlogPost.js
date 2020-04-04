@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import { setCurrent, deleteBlog } from '../../../Actions/blogActions';
 import {connect} from 'react-redux';
 
+import Moment from 'react-moment';
+
 const BlogPost = ({blog, setCurrent, deleteBlog}) => {
 
     const {_id, title, body, image, author} = blog;
@@ -23,6 +25,7 @@ const BlogPost = ({blog, setCurrent, deleteBlog}) => {
             <p>{body}</p>
             <img src={image} height='auto' width='70%' style={{margin: 'auto'}}/>
             <p>{author}</p>
+            <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
             <p><Link to={`/update`} onClick={Click}>Update</Link></p>
             <p onClick={Delete}>Delete</p>
         </div>

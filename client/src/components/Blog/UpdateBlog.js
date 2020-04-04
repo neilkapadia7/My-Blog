@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {updateBlog, removeCurrent} from '../../Actions/blogActions';
+import {updateBlog, removeCurrent, clearErrors} from '../../Actions/blogActions';
+import {setAlert} from '../../Actions/alertAction';
 
-const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => {
+const UpdateBlog = ({ blog: {current, loading, error}, updateBlog, removeCurrent, clearErrors, setAlert }) => {
     
     const [title2, setTitle] = useState('');
     const [body2, setBody] = useState('');
@@ -14,10 +15,15 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => 
             setBody(current.body)
         }
 
+        if(error) {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+
         return() => {
             removeCurrent();
         }
-    }, [current]);
+    }, [current, error]);
 
     if(current === null && loading === true) {
         return <h4>Loading....</h4>
@@ -39,6 +45,8 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => 
                 image: current.image, 
                 author: current.author
             });
+
+            setAlert('Blog Updated Successfully', 'success');
         }
         
     }
@@ -61,11 +69,13 @@ const UpdateBlog = ({ blog: {current, loading}, updateBlog, removeCurrent }) => 
 UpdateBlog.propTypes = {
     blog: PropTypes.object.isRequired,
     updateBlog: PropTypes.func.isRequired,
-    removeCurrent: PropTypes.func.isRequired
+    removeCurrent: PropTypes.func.isRequired,
+    setAlert: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     blog: state.blog
 })
 
-export default connect(mapStateToProps, {updateBlog, removeCurrent})(UpdateBlog);
+export default connect(mapStateToProps, {updateBlog, removeCurrent, clearErrors, setAlert})(UpdateBlog);

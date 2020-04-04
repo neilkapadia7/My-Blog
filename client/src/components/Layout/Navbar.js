@@ -14,7 +14,6 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
             <li><a href='#!'>{user && user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</a></li>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/newBlog'>Add Blog</Link></li>
-            <li><Link to='/about'>About</Link></li>
             <li><Link to='/allblogs'>All Blogs</Link></li>
             <li onClick={Logout}>Logout</li>
         </Fragment>
@@ -22,7 +21,8 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
     
     const guestLinks = (
         <Fragment>
-            <li><Link to='/register'>Register</Link></li>
+            <li><Link to='/home'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
             <li><Link to='/login'>Login</Link></li>
         </Fragment>
     );

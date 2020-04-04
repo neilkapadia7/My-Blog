@@ -1,20 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {addBlog} from '../../Actions/blogActions';
+import {addBlog, clearErrors} from '../../Actions/blogActions';
+import {setAlert} from '../../Actions/alertAction';
 
-const AddBlog = ({ blog :{loading}, auth: {user} ,addBlog }) => {
+const AddBlog = ({ blog :{loading, error}, auth: {user} ,addBlog, clearErrors ,setAlert }) => {
     const [file, setFile] = useState('');
     const [uploadedFile, setUploadedFile] = useState(null);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     
     // const Image = React.lazy(() => import('../../uploads/0.1027282132260352.jpg'));
-      
+
+    useEffect(() => {
+        if(error) {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+    }, [error]);
+
     const formSubmit = e => {
         e.preventDefault();
         if(uploadedFile === null || title === '' || body === '') {
-            console.log('No Image Added');
+            setAlert('Please Add All Required Fields', 'danger');
         }
         else{
             addBlog({
@@ -23,6 +31,8 @@ const AddBlog = ({ blog :{loading}, auth: {user} ,addBlog }) => {
                 image: uploadedFile.filePath,
                 author: user && `${user.firstName} ${user.lastName}`
             })
+
+            setAlert('New Blog Added Successfully!', 'success');
     
             setUploadedFile('');
             setTitle('');
@@ -92,4 +102,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {addBlog})(AddBlog);
+export default connect(mapStateToProps, {addBlog, clearErrors, setAlert})(AddBlog);
