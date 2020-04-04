@@ -1,16 +1,24 @@
 import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { login, clearErrors } from '../../Actions/authAction';
+import {setAlert} from '../../Actions/alertAction';
 
 const Login = props => {
-    const { auth: {isAuthenticated, error}, login, clearErrors } = props;
+    const { auth: {isAuthenticated, error}, login, clearErrors, setAlert } = props;
 
     useEffect(() => {
         if(isAuthenticated) {
             props.history.push('/');
         }
 
-    }, [isAuthenticated, props.history]);
+        if(error) {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+
+    }, [isAuthenticated, props.history, error]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +26,10 @@ const Login = props => {
     const onSubmit = e => {
         e.preventDefault();
         
+        if( email === '' || password === '' ){
+            setAlert('Please Enter All Fields!', 'danger');
+        }
+
         login({
             email,
             password
@@ -39,8 +51,14 @@ const Login = props => {
     )
 }
 
+Login.propTypes = {
+    auth: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {login, clearErrors})(Login);
+export default connect(mapStateToProps, {login, clearErrors, setAlert})(Login);

@@ -1,4 +1,4 @@
-import { GET_GUEST_BLOGS, SET_LOADING, BLOG_ERROR } from "../Actions/types";
+import { GET_GUEST_BLOGS, SET_LOADING, BLOG_ERROR, CLEAR_GUEST_ERRORS } from "../Actions/types";
 
 const initialState = {
     blogs: null,
@@ -18,6 +18,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        case CLEAR_GUEST_ERRORS:
+            return {
+                ...state,
+                error: null
             }
         case BLOG_ERROR:
             console.log(action.payload);

@@ -2,14 +2,21 @@ import React, {useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getBlogs} from '../../../Actions/guestActions';
+import {getBlogs, clearError} from '../../../Actions/guestActions';
+import {setAlert} from '../../../Actions/alertAction';
 
-const GuestHome = ({guest: {blogs, loading, error}, getBlogs}) => {
+const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAlert}) => {
 
     useEffect(() => {
         getBlogs();
 
-    }, []);
+        if(error) {
+            setAlert(error, 'danger');
+            clearError();
+        }
+
+
+    }, [error, getBlogs]);
 
     if(blogs === null) {
         return <h4>Loading....</h4>
@@ -33,10 +40,12 @@ const GuestHome = ({guest: {blogs, loading, error}, getBlogs}) => {
 
 GuestHome.propTypes = {
     getBlogs: PropTypes.func.isRequired,
+    clearError: PropTypes.func.isRequired,
+    setAlert: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({ 
     guest: state.guest
 })
 
-export default connect(mapStateToProps, {getBlogs})(GuestHome);
+export default connect(mapStateToProps, {getBlogs, clearError, setAlert})(GuestHome);

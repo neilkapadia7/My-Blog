@@ -1,4 +1,4 @@
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG } from "../Actions/types";
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG, CLEAR_BLOG_ERRORS, SET_LOADING } from "../Actions/types";
 
 const initialState = {
     blog: null,
@@ -43,7 +43,8 @@ export default (state = initialState, action) => {
         case DELETE_BLOG:
             return {
                 ...state,
-                blogs: state.blogs.filter(blog => blog._id !== action.payload )
+                blogs: state.blogs.filter(blog => blog._id !== action.payload ),
+                loading: false
             }
         case GET_ALL_BLOGS:
             return {
@@ -68,6 +69,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload
+            }
+        case CLEAR_BLOG_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state;

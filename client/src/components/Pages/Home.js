@@ -3,16 +3,23 @@ import {connect} from 'react-redux';
 import {loadUser} from '../../Actions/authAction';
 
 import Blogs from '../Blog/Blogs';
-import {getBlogs} from '../../Actions/blogActions';
+import {getBlogs, clearErrors} from '../../Actions/blogActions';
 import PropTypes from 'prop-types';
 
-const Home = ({loadUser, getBlogs, blog: {blogs}}) => {
+import {setAlert} from '../../Actions/alertAction';
+
+const Home = ({loadUser, getBlogs, clearErrors, blog: {blogs, loading, error}, setAlert}) => {
 
     useEffect(() => {
         loadUser();
         getBlogs();
 
-    }, []);
+        if(error) {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+
+    }, [loadUser, getBlogs, error]);
 
     return (
         <div>
@@ -27,11 +34,14 @@ const Home = ({loadUser, getBlogs, blog: {blogs}}) => {
 
 Home.propTypes = {
     loadUser: PropTypes.func.isRequired,
-    getBlogs: PropTypes.func.isRequired
+    getBlogs: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
+    setAlert: PropTypes.func.isRequired,
+    blog: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
     blog: state.blog
 });
 
-export default connect(mapStateToProps, {loadUser, getBlogs})(Home);
+export default connect(mapStateToProps, {loadUser, getBlogs, clearErrors, setAlert})(Home);

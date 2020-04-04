@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_GUEST_BLOGS, BLOG_ERROR, SET_LOADING } from './types';
+import { GET_GUEST_BLOGS, BLOG_ERROR, SET_LOADING, CLEAR_GUEST_ERRORS } from './types';
 
 export const getBlogs = () => async dispatch => {
     
@@ -22,4 +22,8 @@ export const getBlogs = () => async dispatch => {
 
 const setLoading = () => dispatch => {
     dispatch({ type: SET_LOADING });
+}
+
+export const clearError = () => dispatch => {
+    dispatch({type: CLEAR_GUEST_ERRORS});
 }

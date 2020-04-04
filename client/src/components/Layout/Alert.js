@@ -1,16 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Alert = props => {
+import {connect} from 'react-redux';
+
+const Alert = ({alerts}) => {
     return (
-        <div>
-            Alert
-        </div>
+        alerts.length > 0 &&
+        alerts.map(a => (
+            <div key={a.id} style={{transition: '.3s'}}>
+                <i className='fas fa-info-circle'/>{a.msg}
+            </div>
+        ))
     )
 }
 
 Alert.propTypes = {
-
+    alerts: PropTypes.object.isRequired
 }
 
-export default Alert
+const mapStateToProps = state => ({
+    alerts: state.alerts
+});
+
+export default connect(mapStateToProps, {})(Alert);

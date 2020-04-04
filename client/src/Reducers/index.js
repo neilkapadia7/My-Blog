@@ -8,5 +8,5 @@ export default combineReducers({
     auth: authReducer,
     blog: blogReducer,
     guest: guestReducer,
-    alert: alertReducer
+    alerts: alertReducer
 });

@@ -1,17 +1,25 @@
 import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { register, clearErrors } from '../../Actions/authAction';
+import {setAlert} from '../../Actions/alertAction';
 
 const Register = props => {
 
-    const { auth: {isAuthenticated, error}, register, clearErrors} = props;
+    const { auth: {isAuthenticated, error}, register, clearErrors, setAlert} = props;
 
     useEffect(() => {
         if(isAuthenticated) {
             props.history.push('/');
         }
 
-    }, [isAuthenticated]);
+        if(error) {
+            setAlert(error, 'danger');
+            clearErrors()
+        }
+
+    }, [isAuthenticated, error]);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -20,6 +28,10 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
+
+        if( firstName === '' || lastName === '' || email === '' || password === ''){
+            setAlert('Please Enter All The Details');
+        }
 
         register({
             firstName,
@@ -48,8 +60,14 @@ const Register = props => {
     )
 }
 
+Register.propTypes = {
+    auth: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {register, clearErrors})(Register);
+export default connect(mapStateToProps, {register, clearErrors, setAlert})(Register);

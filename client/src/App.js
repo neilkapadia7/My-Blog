@@ -12,6 +12,8 @@ import Blog from './components/Blog/Blog';
 import AllBlogs from './components/Blog/AllBlogs/AllBlogs'; 
 import UserBlogs from './components/Blog/AllBlogs/UserBlogs';
 
+import Alert from './components/Layout/Alert';
+
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -32,7 +34,8 @@ const App = () => {
     <Provider store={store}>
     <div className="App">
       <Router>
-      <Navbar />
+       <Navbar />
+       <Alert/>
         <Switch>
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/blog/:id' component={Blog} />

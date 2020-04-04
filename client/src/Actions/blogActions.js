@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG } from './types';
+import { GET_BLOGS, BLOG_ERROR, ADD_BLOG, UPDATE_BLOG, SET_CURRENT, DELETE_BLOG, REMOVE_CURRENT, GET_ALL_BLOGS, GET_USER_BLOGS, REMOVE_USER_BLOG, CLEAR_BLOG_ERRORS, SET_LOADING } from './types';
 
 export const getBlogs = () => async dispatch => {
-   
+    setLoading();
+
     try {
         const res = await axios.get('api/blogs');
 
@@ -14,6 +15,8 @@ export const getBlogs = () => async dispatch => {
 }
 
 export const addBlog = formData => async dispatch => {
+    setLoading();
+    
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -38,6 +41,8 @@ export const removeCurrent = () => dispatch => {
 }
 
 export const updateBlog = formData => async dispatch => {
+    setLoading();
+
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -72,6 +77,8 @@ export const deleteBlog = id => async dispatch => {
 }
 
 export const getAllBlogs = () => async dispatch => {
+    setLoading();
+
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -90,6 +97,8 @@ export const getAllBlogs = () => async dispatch => {
 
 export const getUserBlogs = id => async dispatch => {
     try {
+        setLoading();
+
         const res = await axios.get(`/api/blogs/user/${id}`);
         
         dispatch({type: GET_USER_BLOGS, payload: res.data});
@@ -99,6 +108,14 @@ export const getUserBlogs = id => async dispatch => {
     }
 }
 
+const setLoading = () => dispatch => {
+    dispatch({ type: SET_LOADING });
+}
+
 export const removeUserBlog = () => dispatch => {
     dispatch({ type: REMOVE_USER_BLOG })
+}
+
+export const clearErrors = () => dispatch => {
+    dispatch({ type: CLEAR_BLOG_ERRORS })
 }

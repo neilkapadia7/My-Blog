@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export const setAlert = (msg, type) => dispatch => {
+    console.log('Alert Action Called!')
     const id = uuidv4();
     dispatch({ type: SET_ALERT, payload: {msg, type, id} });
 
