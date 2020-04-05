@@ -32,9 +32,9 @@ const App = () => {
   return (
     
     <Provider store={store}>
-    <div className="App">
       <Router>
        <Navbar />
+       <div className="App">
        <Alert/>
         <Switch>
           <PrivateRoute exact path='/' component={Home} />
@@ -49,8 +49,8 @@ const App = () => {
           <Route exact path='/home' component={GuestHome} />
           <Route exact path='*' component={NotFound} />
         </Switch>
+        </div>
       </Router>
-    </div>
     </Provider>
   );
 }

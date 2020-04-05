@@ -47,14 +47,14 @@ const Register = props => {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={onSubmit}>
-                <input type='text' value={firstName} placeholder='Enter First Name' onChange={(e) => setFirstName(e.target.value)} required />
-                <input type='text' value={lastName} placeholder='Enter Last Name' onChange={(e) => setLastName(e.target.value)} required />
-                <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required/>
-                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
-                <input type='submit' value='Register' />
+        <div className='auth-div'>
+            <h1 className='auth-head'>Register</h1>
+            <form onSubmit={onSubmit} className='auth-form'>
+                <input type='text' value={firstName} placeholder='Enter First Name' onChange={(e) => setFirstName(e.target.value)} required className='auth-fields'/>
+                <input type='text' value={lastName} placeholder='Enter Last Name' onChange={(e) => setLastName(e.target.value)} required className='auth-fields' />
+                <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required className='auth-fields' />
+                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required className='auth-fields'/>
+                <input type='submit' value='Register' className='auth-button'/>
             </form>
         </div>
     )

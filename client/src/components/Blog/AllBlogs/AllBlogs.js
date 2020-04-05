@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAllBlogs, clearErrors} from '../../../Actions/blogActions';
@@ -24,15 +24,17 @@ const AllBlogs = ({blog: {allblogs, error}, getAllBlogs, clearErrors, setAlert})
     }
 
     return (
-        <div>
+        <div className='blog-div'>
             {allblogs.map(blog =>
-                <Fragment key={blog._id}>
-                    <img src={blog.image} height='auto' width='75%' style={{margin: 'auto'}}/>
-                    <h2>{blog.title}</h2>
-                    <h5>{blog.body}</h5>
-                    <p><Link to={`/user/blogs/${blog.user}`}>{blog.author}</Link></p>
-                    <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
-                </Fragment>
+                <div key={blog._id} className='blog-main'>
+                    <h2 className='title'>{blog.title}</h2>
+                    <div className='blog-auth-date'>
+                        <Link to={`/user/blogs/${blog.user}`} className='author'><span style={{color: '#000'}}>by </span>{blog.author}</Link>
+                        <Moment className='date' format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
+                    </div>
+                    <img src={blog.image} className='blog-image'/>
+                    <h5 className='body'>{blog.body}</h5>
+                </div>
             )}
         </div>
     )

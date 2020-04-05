@@ -11,11 +11,11 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
 
     const authLinks = (
         <Fragment>
-            <li><a href='#!'>{user && user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</a></li>
+            <li className='nav-user-li'><a href='#!' className='nav-user-a' >{user && user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</a></li>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/newBlog'>Add Blog</Link></li>
             <li><Link to='/allblogs'>All Blogs</Link></li>
-            <li onClick={Logout}>Logout</li>
+            <li onClick={Logout}><a href='#!'>Logout</a></li>
         </Fragment>
     );
     
@@ -29,7 +29,7 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
 
     return (
         <div className='nav'>
-            <div className='logo'>NeilBlog</div>
+            <div className='logo'>NeyaTech Blog</div>
             <nav>
                 <ul>
                     {isAuthenticated ? authLinks : guestLinks}

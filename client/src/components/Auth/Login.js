@@ -40,12 +40,12 @@ const Login = props => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={onSubmit}>
-                <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required/>
-                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
-                <input type='submit' value='Login' />
+        <div className='auth-div'>
+            <h1 className='auth-head'>Login</h1>
+            <form onSubmit={onSubmit} className='auth-form'>
+                <input type='email' value={email} placeholder='Enter Email ID' onChange={(e) => setEmail(e.target.value)} required className='auth-fields' />
+                <input type='password' value={password} placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required className='auth-fields' />
+                <input type='submit' value='Login' className='auth-button'/>
             </form>
         </div>
     )

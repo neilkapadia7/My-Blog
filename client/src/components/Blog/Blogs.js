@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import BlogPost from './SingleBlog/BlogPost';
 import PropTypes from 'prop-types'
 
 const Blogs = ({blogs}) => {
 
     return (
-        <Fragment>
+        <div className='blog-div'>
             {blogs.map(blog => 
-                <div key={blog._id}>
+                <div key={blog._id} >
                     <BlogPost blog={blog} />
                 </div>
             )}
-        </Fragment>
+        </div>
     )
 }
 

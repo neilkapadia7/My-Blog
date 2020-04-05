@@ -23,7 +23,7 @@ const Home = ({loadUser, getBlogs, clearErrors, blog: {blogs, loading, error}, s
 
     return (
         <div>
-            <h2>Home</h2>
+            <h2>My Blogs</h2>
             {blogs === null 
                 ? <h5>Loading....</h5>
                 : <Blogs blogs={blogs} key='1'/> 

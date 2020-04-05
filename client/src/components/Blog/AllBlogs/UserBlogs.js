@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getUserBlogs, removeUserBlog, clearErrors} from '../../../Actions/blogActions';
@@ -28,14 +28,17 @@ const UserBlogs = props => {
     }
 
     return (
-        <div>
+        <div className='blog-div'>
             {userblogs.map(blog => 
-               <Fragment key={blog._id}>
-                    <img src={blog.image} height='auto' width='75%' style={{margin: 'auto'}}/>
-                    <h2>{blog.title}</h2>
-                    <h5>{blog.body}</h5>
-                    <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
-                </Fragment> 
+               <div key={blog._id} className='blog-main'>
+                    <h2 className='title'>{blog.title}</h2>
+                    <div className='blog-auth-date'>
+                        <p className='author'><span style={{color: '#000'}}>by </span>{blog.author}</p>
+                        <Moment format='Do MMMM YYYY, h:mm:ss a' className='date'>{blog.date}</Moment>
+                    </div>
+                    <img src={blog.image} className='blog-image'/>
+                    <h5 className='body'>{blog.body}</h5>
+                </div> 
             )}
         </div>
     )

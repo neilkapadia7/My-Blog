@@ -25,14 +25,16 @@ const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAle
     }
 
     return (
-        <div>
+        <div className='blog-div'>
             {blogs && blogs.map(blog => 
-                <div key={blog._id}>
-                    <img src={blog.image} height='auto' width='80%' style={{margin: 'auto'}} />
-                    <h2>{blog.title}</h2>    
-                    <h5>{blog.body}</h5>
-                    <p>{blog.author}</p>
-                    <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
+                <div key={blog._id} className='blog-main'>
+                    <h2 className='title'>{blog.title}</h2>
+                    <div className='blog-auth-date'>
+                        <p className='author'><span style={{color: '#000'}}>by </span>{blog.author}</p>
+                        <Moment className='date' format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>  
+                    </div>
+                    <img src={blog.image} className='blog-image'/>  
+                    <h5 className='body'>{blog.body}</h5>
                     <br />
                 </div>
             )

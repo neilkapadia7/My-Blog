@@ -20,12 +20,14 @@ const BlogPost = ({blog, setCurrent, deleteBlog}) => {
     }
 
     return (
-        <div key={_id}>
-            <h3>{title}</h3>
-            <p>{body}</p>
-            <img src={image} height='auto' width='70%' style={{margin: 'auto'}}/>
-            <p>{author}</p>
-            <Moment format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
+        <div key={_id} className='blog-main'>
+            <h3 className='title'>{title}</h3>
+            <div className='blog-auth-date'>
+                <p className='author'><span style={{color: '#000'}}>by </span>{author}</p>
+                <Moment format='Do MMMM YYYY, h:mm:ss a' className='date'>{blog.date}</Moment>
+            </div>
+            <img src={image} className='blog-image'/>
+            <p className='body'>{body}</p>
             <p><Link to={`/update`} onClick={Click}>Update</Link></p>
             <p onClick={Delete}>Delete</p>
         </div>
