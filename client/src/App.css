@@ -8,6 +8,7 @@
   top: 0;
   left: 0;
   padding: 5px 0;
+  z-index: 9999;
 }
 .nav .logo{
   color: #fafaf6;
@@ -95,7 +96,7 @@ nav ul li a {
 .blog-main{
   width: 100%;
   display: table;
-  padding-bottom: 25px;
+  padding-bottom: 65px;
   border-bottom: .2px solid #dbdbdb;
   border-width: 80%;
 }
@@ -103,6 +104,7 @@ nav ul li a {
   width: 100%;
   height: auto;
   margin: auto;
+  box-shadow: 0 0 10px #eee;
 }
 .title{
   font-size: 35px;
@@ -129,13 +131,85 @@ nav ul li a {
   color: rgb(128, 128, 128);
 }
 .body{
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
   width: 95%;
   margin-right: 5%;
+  padding-top: 40px;
+  line-height: 30px;
+  display: table;
 }
 .blog-auth-date{
   display: flex;
   margin: 25px 0 ;
+}
+.blog-button-div{
+  display: flex;
+  margin: 25px 0 ;
+}
+.blog-update {
+  text-decoration: none;
+  cursor: pointer;
+  color: #FFF;
+  border: 1px solid #00d1ff;
+  padding: 10px 25px;
+  margin: 0;
+  border-radius: 5px;
+  background-color: #00d1ff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+.blog-delete {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 0 0 20px;
+  color: #FFFF;
+  border: 1px solid #3d6cb9;
+  padding: 10px 25px;
+  border-radius: 5px;
+  background-color: #3d6cb9;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Add Blog */
+.add-blog-image{
+  width: 100%;
+  height: auto;
+}
+.remove-pic{
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif; 
+  color: #3d6cb9;
+  cursor: pointer;
+  margin: 25px 0;
+}
+.remove-pic:hover{
+  text-decoration: underline;
+}
+
+/* React Quill */
+
+.quill-editor{
+  background-color: #FFF;
+  border: none;
+  outline: none;
+}
+.quill-editor{
+  border: none;
+  outline: none;
+}
+.ql-toolbar{
+  border: none!important;
+  border-bottom: .5px solid #00d1ff;
+}
+.ql-snow{
+  border: none!important;
+}
+.ql-container{
+  border: none!important;
 }

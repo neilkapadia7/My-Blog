@@ -29,6 +29,8 @@ export const REMOVE_USER_BLOG = 'REMOVE_USER_BLOG';
 
 // Guest Types
 export const GET_GUEST_BLOGS = 'GET_GUEST_BLOGS';
+export const GET_GUEST_BLOG = 'GET_GUEST_BLOG';
+export const REMOVE_GUEST_BLOG = 'REMOVE_GUEST_BLOG';
 export const CLEAR_GUEST_ERRORS = 'CLEAR_GUEST_ERRORS';
 
 // Alert Types

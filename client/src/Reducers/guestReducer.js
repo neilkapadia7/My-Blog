@@ -1,7 +1,8 @@
-import { GET_GUEST_BLOGS, SET_LOADING, BLOG_ERROR, CLEAR_GUEST_ERRORS } from "../Actions/types";
+import { GET_GUEST_BLOGS, SET_LOADING, BLOG_ERROR, CLEAR_GUEST_ERRORS, REMOVE_GUEST_BLOG, GET_GUEST_BLOG } from "../Actions/types";
 
 const initialState = {
     blogs: null,
+    blog: null,
     loading: false,
     error: null
 }
@@ -12,6 +13,18 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 blogs: action.payload,
+                loading: false
+            }
+        case GET_GUEST_BLOG:
+            return {
+                ...state,
+                blog: action.payload,
+                loading: false
+            }
+        case REMOVE_GUEST_BLOG:
+            return {
+                ...state,
+                blog: null,
                 loading: false
             }
         case SET_LOADING:

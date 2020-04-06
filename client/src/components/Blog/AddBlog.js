@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {addBlog, clearErrors} from '../../Actions/blogActions';
 import {setAlert} from '../../Actions/alertAction';
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddBlog = ({ blog :{loading, error}, auth: {user} ,addBlog, clearErrors ,setAlert }) => {
     const [file, setFile] = useState('');
@@ -46,7 +49,7 @@ const AddBlog = ({ blog :{loading, error}, auth: {user} ,addBlog, clearErrors ,s
 
     const fileUploadHandler = async () => {
         if(file === '') {
-            console.log('No File Added!');
+            setAlert('No File Added!', 'danger');
         }
         
         else {
@@ -80,19 +83,35 @@ const AddBlog = ({ blog :{loading, error}, auth: {user} ,addBlog, clearErrors ,s
         }
     }
 
+    const Replace = () => {
+        setUploadedFile(null);
+    }
+
     return (
-        <div>
-            Add Blog
-            <form onSubmit={formSubmit}>
-                <input type='text' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} required/>
-                <input type='text' placeholder='Body' value={body} onChange={(e) => setBody(e.target.value)} required/>
-                <input type='submit' value='Publish Blog' />
-            </form>
-            <input type='file' onChange={onChange} />
-            <button onClick={fileUploadHandler}>Submit Image</button>
+        <div className='auth-div'>
+            <h1 className='auth-head'>Add Blog</h1>
+            {uploadedFile === null
+                ? 
+                  <Fragment>
+                    <input type='file' onChange={onChange} />
+                    <button onClick={fileUploadHandler}>Submit Image</button>
+                  </Fragment>
+                : ''
+            }
+            
             {uploadedFile !== null ? 
-                <img src={uploadedFile.filePath} height='auto' width='70%' style={{margin: 'auto'}}/>         
+                <Fragment>
+                    <img src={uploadedFile.filePath} className='add-blog-image'/>  
+                    <p className='remove-pic' onClick={Replace}>Remove this Picture?</p> 
+                </Fragment>      
             : '' }
+            <form onSubmit={formSubmit}>
+                <input type='text' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} required className='auth-fields' />
+                {/* <input type='text' placeholder='Body' value={body} onChange={(e) => setBody(e.target.value)} required className='auth-fields' /> */}
+                <ReactQuill theme="snow" value={body} onChange={setBody} className='quill-editor'/>
+                <input type='submit' value='Publish Blog' className='auth-button' />
+            </form>
+            
         </div>
     )
 }

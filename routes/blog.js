@@ -152,4 +152,19 @@ router.get('/user/:id', auth ,async (req, res) => {
     }
 });
 
+// @route   GET    api/blogs/blog/:id
+// @desc    Get a Blog
+// @access  Public
+router.get('/blog/:id', async (req, res) => {
+    try {
+        const blog = await Blog.findById(req.params.id);
+        
+        res.json(blog);
+    } 
+    catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;

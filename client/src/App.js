@@ -22,6 +22,7 @@ import store from './store';
 import NotFound from './components/Layout/NotFound';
 import UpdateBlog from './components/Blog/UpdateBlog';
 import GuestHome from './components/Blog/Guest/GuestHome';
+import GuestBlog from './components/Blog/Guest/GuestBlog';
 
 if(localStorage.token) {
   setAuthToken(localStorage.token);
@@ -47,6 +48,8 @@ const App = () => {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/home' component={GuestHome} />
+          <Route exact path='/gblog/:id' component={GuestBlog} />
+          <Route exact path='/testing' component={Testing} />
           <Route exact path='*' component={NotFound} />
         </Switch>
         </div>

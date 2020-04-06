@@ -28,8 +28,10 @@ const BlogPost = ({blog, setCurrent, deleteBlog}) => {
             </div>
             <img src={image} className='blog-image'/>
             <p className='body'>{body}</p>
-            <p><Link to={`/update`} onClick={Click}>Update</Link></p>
-            <p onClick={Delete}>Delete</p>
+            <div className='blog-button-div'>
+                <Link to={`/update`} onClick={Click} className='blog-update'>Update</Link>
+                <p onClick={Delete} className='blog-delete'>Delete</p>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {updateBlog, removeCurrent, clearErrors} from '../../Actions/blogActions';
@@ -52,17 +52,18 @@ const UpdateBlog = ({ blog: {current, loading, error}, updateBlog, removeCurrent
     }
 
     return (
-        <Fragment>
+        <div className='auth-div'>
         {current !== null
             ? 
             <form onSubmit={onSubmit}>
-                <input type='text' value={title2} onChange={(e) => setTitle(e.target.value)}/>
-                <input type='text' value={body2} onChange={(e) => setBody(e.target.value)}/>
-                <input type='submit' value='Update Blog' />
+                <h1 className='auth-head'>Update Blog</h1>
+                <input type='text' value={title2} onChange={(e) => setTitle(e.target.value)} className='auth-fields' />
+                <input type='text' value={body2} onChange={(e) => setBody(e.target.value)} className='auth-fields' />
+                <input type='submit' value='Update Blog' className='auth-button' />
             </form>
             : <h3>No Blog Selected For Update</h3>
         }
-        </Fragment>
+        </div>
     )
 }
 

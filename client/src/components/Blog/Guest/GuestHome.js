@@ -6,6 +6,7 @@ import {getBlogs, clearError} from '../../../Actions/guestActions';
 import {setAlert} from '../../../Actions/alertAction';
 
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAlert}) => {
 
@@ -34,8 +35,8 @@ const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAle
                         <Moment className='date' format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>  
                     </div>
                     <img src={blog.image} className='blog-image'/>  
-                    <h5 className='body'>{blog.body}</h5>
-                    <br />
+                    <div dangerouslySetInnerHTML={{__html: blog.body.substring(0, 350) + '...'}} className='body'></div>
+                    <Link className='blog-update' to={`/gblog/${blog._id}`}>Read More</Link>
                 </div>
             )
             }
