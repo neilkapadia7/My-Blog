@@ -27,7 +27,7 @@ const BlogPost = ({blog, setCurrent, deleteBlog}) => {
                 <Moment format='Do MMMM YYYY, h:mm:ss a' className='date'>{blog.date}</Moment>
             </div>
             <img src={image} className='blog-image'/>
-            <p className='body'>{body}</p>
+            <div dangerouslySetInnerHTML={{__html: body}} className='body'></div>
             <div className='blog-button-div'>
                 <Link to={`/update`} onClick={Click} className='blog-update'>Update</Link>
                 <p onClick={Delete} className='blog-delete'>Delete</p>

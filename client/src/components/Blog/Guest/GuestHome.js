@@ -36,7 +36,7 @@ const GuestHome = ({guest: {blogs, loading, error}, clearError, getBlogs, setAle
                     </div>
                     <img src={blog.image} className='blog-image'/>  
                     <div dangerouslySetInnerHTML={{__html: blog.body.substring(0, 350) + '...'}} className='body'></div>
-                    <Link className='blog-update' to={`/gblog/${blog._id}`}>Read More</Link>
+                    <Link className='blog-read' to={`/gblog/${blog._id}`}>Read More</Link>
                 </div>
             )
             }

@@ -33,7 +33,7 @@ const AllBlogs = ({blog: {allblogs, error}, getAllBlogs, clearErrors, setAlert})
                         <Moment className='date' format='Do MMMM YYYY, h:mm:ss a'>{blog.date}</Moment>
                     </div>
                     <img src={blog.image} className='blog-image'/>
-                    <h5 className='body'>{blog.body}</h5>
+                    <div dangerouslySetInnerHTML={{__html: blog.body.substring(0, 350) + '...'}} className='body'></div>
                 </div>
             )}
         </div>

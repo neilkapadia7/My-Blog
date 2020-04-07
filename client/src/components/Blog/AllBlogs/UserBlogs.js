@@ -37,7 +37,7 @@ const UserBlogs = props => {
                         <Moment format='Do MMMM YYYY, h:mm:ss a' className='date'>{blog.date}</Moment>
                     </div>
                     <img src={blog.image} className='blog-image'/>
-                    <h5 className='body'>{blog.body}</h5>
+                    <div dangerouslySetInnerHTML={{__html: blog.body.substring(0, 350) + '...'}} className='body'></div>
                 </div> 
             )}
         </div>

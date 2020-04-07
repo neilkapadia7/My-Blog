@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {updateBlog, removeCurrent, clearErrors} from '../../Actions/blogActions';
 import {setAlert} from '../../Actions/alertAction';
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 const UpdateBlog = ({ blog: {current, loading, error}, updateBlog, removeCurrent, clearErrors, setAlert }) => {
     
     const [title2, setTitle] = useState('');
@@ -35,7 +38,7 @@ const UpdateBlog = ({ blog: {current, loading, error}, updateBlog, removeCurrent
     const onSubmit = (e) => {
         e.preventDefault();
         if(title2 === '' || body2 === '') {
-            console.log('Please Fill both Title and Body');
+            setAlert('Please Fill both Title and Body', 'danger');
         }
         else{
             updateBlog({
@@ -58,7 +61,8 @@ const UpdateBlog = ({ blog: {current, loading, error}, updateBlog, removeCurrent
             <form onSubmit={onSubmit}>
                 <h1 className='auth-head'>Update Blog</h1>
                 <input type='text' value={title2} onChange={(e) => setTitle(e.target.value)} className='auth-fields' />
-                <input type='text' value={body2} onChange={(e) => setBody(e.target.value)} className='auth-fields' />
+                {/* <input type='text' value={body2} onChange={(e) => setBody(e.target.value)} className='auth-fields' /> */}
+                <ReactQuill theme="snow" value={body2} onChange={setBody} className='quill-editor'/>
                 <input type='submit' value='Update Blog' className='auth-button' />
             </form>
             : <h3>No Blog Selected For Update</h3>
