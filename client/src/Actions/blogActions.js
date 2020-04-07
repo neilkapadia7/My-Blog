@@ -10,7 +10,7 @@ export const getBlogs = () => async dispatch => {
         dispatch({type: GET_BLOGS, payload: res.data});
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });
+        dispatch({ type: BLOG_ERROR, payload: err.message });
     }
 }
 
@@ -28,7 +28,7 @@ export const addBlog = formData => async dispatch => {
         dispatch({ type: ADD_BLOG, payload: res.data });
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });
+        dispatch({ type: BLOG_ERROR, payload: err.message });
     }
 }
 
@@ -55,7 +55,7 @@ export const updateBlog = formData => async dispatch => {
         dispatch({ type: UPDATE_BLOG, payload: res.data });
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });
+        dispatch({ type: BLOG_ERROR, payload: err.message });
     }
 }
 
@@ -72,7 +72,7 @@ export const deleteBlog = id => async dispatch => {
         dispatch({ type: DELETE_BLOG, payload: id });
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });   
+        dispatch({ type: BLOG_ERROR, payload: err.message });   
     }
 }
 
@@ -91,7 +91,7 @@ export const getAllBlogs = () => async dispatch => {
         dispatch({ type: GET_ALL_BLOGS, payload: res.data});    
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });   
+        dispatch({ type: BLOG_ERROR, payload: err.message });   
     }
 }
 
@@ -104,7 +104,7 @@ export const getUserBlogs = id => async dispatch => {
         dispatch({type: GET_USER_BLOGS, payload: res.data});
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });   
+        dispatch({ type: BLOG_ERROR, payload: err.message });   
     }
 }
 

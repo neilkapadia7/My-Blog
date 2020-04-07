@@ -7,7 +7,7 @@ const Alert = ({alerts}) => {
     return (
         alerts.length > 0 &&
         alerts.map(a => (
-            <div key={a.id} style={{transition: '.3s'}}>
+            <div key={a.id} style={{transition: '.3s'}} className={`alert alert-${a.type}`}>
                 <i className='fas fa-info-circle'/>{a.msg}
             </div>
         ))

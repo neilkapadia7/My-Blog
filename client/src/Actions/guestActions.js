@@ -16,7 +16,7 @@ export const getBlogs = () => async dispatch => {
         dispatch({ type: GET_GUEST_BLOGS, payload: res.data });
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });
+        dispatch({ type: BLOG_ERROR, payload: err.message });
     }
 }
 
@@ -35,7 +35,7 @@ export const getGuestBlog = (id) => async dispatch => {
         dispatch({ type: GET_GUEST_BLOG, payload: res.data });
     } 
     catch (err) {
-        dispatch({ type: BLOG_ERROR, payload: err });
+        dispatch({ type: BLOG_ERROR, payload: err.message });
     }
 }
 

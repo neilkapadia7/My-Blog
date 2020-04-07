@@ -226,3 +226,19 @@ nav ul li a {
 .ql-container{
   border: none!important;
 }
+
+/* Alert */
+.alert{
+  width: 100%;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+}
+.alert-success{
+  background-color: #00b618;
+  color: #FFF;
+}
+.alert-danger{
+  background-color: #dd0000;
+  color: #FFF;
+}
